@@ -1,0 +1,95 @@
+﻿<div>
+    <form ng-submit="save()">
+        <ng-include src="'/html/mpage/nav.html'"></ng-include>
+
+        <div ng="form-group">
+            <label>Datum</label>
+            <input class="form-control" type="date" ng-model="p.date" ng-required="true">
+        </div>
+
+        <div class="form-group">
+            <label>Utbetalning från</label> <br />
+            <label class="checkbox-inline" ng-repeat="k in utkassakonton">
+                <input type="radio" name="inlineRadioOptions" value="{{k.konto}}" ng-model="p.konto" ng-required="true"> {{k.text}}
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>Typ av utbetalning</label>
+            <select class="form-control" ng-model="p.typ" ng-options="u.kontotext for u in uttyp" ng-required="true"></select>
+            <div style="margin-top: 10px;" ng-show="p.typ.tooltip" class="panel panel-info">
+                <div class="panel-heading"> {{p.typ.tooltip}}</div>
+            </div>
+            <p class="bg-info" ></p>
+
+        </div>
+
+        <div class="form-group">
+            <label>Text</label>
+            <input type="text" class="form-control" ng-model="p.typ.text" ng-required="p.typ.kontotext =='normal'" ng-required="true">
+        </div>
+
+        <div ng-show="p.typ.kategori =='normal'">
+
+                <div class="form-group">
+                    <label>Belopp</label>
+                    <input type="number" class="form-control" ng-model="p.typ.belopp"  ng-required="p.typ.kategori =='normal'">
+                </div>
+                <div class="form-group" ng-show="p.typ.isMoms">
+                    <label>Varav moms</label>
+                    <input type="number" class="form-control" ng-model="p.typ.moms" ng-required="p.typ.isMoms">
+                </div>
+        </div>
+
+        <div ng-show="p.typ.kategori == 'Representation'">
+            <div class="form-group">
+                <label>Antal personer</label>
+                <input type="number" class="form-control" ng-model="p.repAntal" ng-change="repAvdrag()" ng-required="p.typ.kontotext =='Representation'" />
+            </div>
+            <div class="form-group">
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions3" value="0.12" ng-model="p.reptyp" ng-change="repAvdrag()" ng-required="p.typ.kontotext =='Representation'">
+                    Avser mat
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions3" value="0.156" ng-model="p.reptyp" ng-change="repAvdrag()" ng-required="p.typ.kontotext =='Representation'">
+                    Avser mat och alkohol
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions3" value="0.25" ng-model="p.reptyp" ng-change="repAvdrag()" ng-required="p.typ.kontotext =='Representation'">
+                    Avser alkohol
+                </label>
+            </div>
+            <div class="form-group">
+                  <h4>Utgifter för måltider</h4>
+                        <label>Total utgift för måltider inkl. moms</label>
+                        <input type="number" class="form-control" ng-model="p.repBelopp" ng-change="repAvdrag()" ng-required="p.typ.kontotext =='Representation'"/>
+                        <label>Varav moms</label>
+                        <input type="number" class="form-control" ng-model="p.repMoms" ng-change="repAvdrag()" ng-required="p.typ.kontotext =='Representation'"/>
+
+            </div>
+            <div class="form-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading" ng-click="showKring = ! showKring">
+                        Utgifter för kringkostnader
+                    </div>
+                    <div class="panel-body" ng-show="showKring">
+                        <label>Total utgift för kringkostnader inkl. moms</label>
+                        <input type="number" class="form-control" ng-model="repkk" ng-change="repAvdrag()" />
+                        <label>Varav moms</label>
+                        <input type="number" class="form-control" ng-model="repkkmoms" ng-change="repAvdrag()" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <h4>Summa</h4>
+                <label>Avdragsgill utgift för representation</label>
+                <input type="number" class="form-control" ng-model="p.repAvdrag"  />
+                <label>Momsavdrag för representation</label>
+                <input type="number" class="form-control" ng-model="p.repAvdragMoms"   />
+                <label>Ej avdragsgill utgift för representation</label>
+                <input type="text" class="form-control" ng-model="p.repNoAvdrag"  />
+            </div>
+        </div>
+    </form>
+</div>

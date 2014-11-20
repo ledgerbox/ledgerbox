@@ -1,0 +1,27 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6">
+            <label style="margin-top: 10px;">Startdatum</label>
+            <datepicker>
+                <input ng-change="newDate()" class="form-control" ng-model="search.startDate" type="text">
+            </datepicker>
+        </div>
+        <div class="col-lg-6">
+            <label style="margin-top: 10px;">Slutdatum</label>
+            <datepicker>
+                <input ng-change="newDate()" class="form-control" ng-model="search.endDate" type="text">
+            </datepicker>
+        </div>
+    </div>
+    <h2>Resultatrapport</h2>
+    <div class="report">
+         <div ng-repeat="b in bas" class="rowResult">
+                <div class="subResult row" ng-repeat="k in b.konton">
+                    <span class="col-sm-offset-1 col-sm-2">{{k.kontonr}}</span> <span class="col-sm-3">{{k.text}}</span> <span>{{k.belopp | float}}</span>
+                </div>
+                <div class="row headResult">
+                    <span class="col-sm-6" ng-class="b.typ">{{b.title}}</span> <span>{{b.belopp | float}}</span>
+                </div>
+         </div>
+    </div>
+</div>

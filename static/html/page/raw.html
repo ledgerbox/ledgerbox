@@ -1,0 +1,8 @@
+﻿<div class="container" ng-controller="rawCtrl" ng-init="load()">
+    <table>
+    <tr ng-repeat="a in all">
+        <td>{{a.id }}  </td> <td>{{a.book }}  </td> <td>{{a | json}}</td>
+    </tr>
+    </table>
+
+</div>

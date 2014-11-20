@@ -1,0 +1,125 @@
+<div class="container-fluid" datagrid="g" datagrid-page-size="75" ng-init="init()">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Skapa konto</h4>
+                </div>
+                <form role="form" ng-submit="create()">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Kontaktperson</label>
+                            <input type="text" required class="form-control" ng-model="name" placeholder="Namn">
+                        </div>
+                        <div class="form-group">
+                            <label>Företagsnamn</label>
+                            <input type="text" required class="form-control" ng-model="comapany" placeholder="Ditt Företagsnamn">
+                        </div>
+                        <div class="form-group">
+                            <label>Företags epost</label>
+                            <input type="text" type="email" required class="form-control" ng-model="email" placeholder="E-Mail">
+                        </div>
+                        <div class="form-group">
+                            <label>Telefon</label>
+                            <input type="text" required class="form-control" ng-model="tele" placeholder="Ditt kontaktnummer">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Skapa</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <panel title="Filter">
+        <div class="row">
+            <div class="col-md-12">
+                <label> Sök </label>
+                <div class="input-group">
+                    <input class="form-control" type="text" ng-model="g.search.freeText" placeholder="Fritext sökning">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </panel>
+
+    <panel title="Avancerad filter" collapse="true">
+        <div class="form-group">
+            <label style="display: block">Konto</label>
+            <select chosen ng-model="g.search.konto" data-placeholder="Sök efter konto" allow-single-deselect="true" ng-options="label(k.kontonr, k.kontonamn)  for k in konton">
+                <option value=""></option>
+            </select>
+
+        </div>
+
+        <label style="margin-top: 5px;">Startdatum</label>
+        <datepicker>
+            <input class="form-control" ng-model="g.search.startDate" type="text">
+        </datepicker>
+        <label style="margin-top: 10px;">Slutdatum</label>
+        <datepicker>
+            <input class="form-control" ng-model="g.search.endDate" type="text">
+        </datepicker>
+        <label style="display: block;margin-top: 10px;">Serie</label>
+        <select ng-model="g.search.serie" data-placeholder="Sök efter serie"  ng-options="label(s.namn, s.info) for s in series" chosen allow-single-deselect="true" disable-search="true" style="width: 400px;"></select>
+    </panel>
+
+    <panel title="Resultat">
+        <dropdown title="Visa/Dölj kolum">
+                <li toggle-col-display="0">Serie</li>
+                <li toggle-col-display="1">Verifikationsnummer</li>
+                <li toggle-col-display="2">Bokföringsdatum</li>
+                <li toggle-col-display="3">Beskrivning</li>
+                <li toggle-col-display="4">Filer</li>
+                <li toggle-col-display="5">Konton</li>
+                <li toggle-col-display="6">Sum</li>
+        </dropdown>
+        <paginator></paginator>
+        <div class="table-responsive">
+            <table class="table table-striped {{g.cssShowHide(6)}}">
+                <tr>
+                    <th col-index="0" col-hide sort-by="ver.serie">Serie</th>
+                    <th col-index="1" sort-by="vernr" default-sort="-">Verifikationsnummer</th>
+                    <th col-index="2" sort-by="date" >Bokföringsdatum</th>
+                    <th col-index="3" > Beskrivning</th>
+                    <th col-index="4" >Filer</th>
+                    <th col-index="5" col-hide >Konton</th>
+                    <th col-index="6" sort-by="sum">Sum</th>
+                    <th>Makulera</th>
+                </tr>
+                <tr ng-repeat="v in verfikationer | filter: search | orderBy:g.orderByExp | paginate: g.paginator" >
+                    <td col-index="0" class="col-hide-0"> {{v.ver.serie}} </td>
+                    <td col-index="1"> {{v.vernr}} </td>
+                    <td col-index="2"> {{v.dateString}}</td>
+                    <td col-index="3"><a href="" ng-click="show(v.ver)" > {{v.text }}</a> </td>
+                    <td col-index="4"> <a  ng-repeat="f in  v.files" href="{{f}}"><i class="glyphicon glyphicon-paperclip"></i></a> </td>
+                    <td col-index="5" >
+                        <table class="table">
+                            <tr>
+                                <td>Kontonr</td>
+                                <td>Debit</td>
+                                <td>Kredit</td>
+                            </tr>
+                            <tr ng-repeat="p in v.ver.poster">
+                                <td>{{p.kontonr}}</td>
+                                <td>{{p.belopp | showIfPosetive | float}}</td>
+                                <td>{{p.belopp | showIfNegative | float}}</td>
+                            </tr>
+                        </table>
+
+                    </td>
+                    <td col-index="6"> {{v.sumFixed}} </td>
+                    <td>
+                        <a class="btn" href="" ng-click="revert(v.ver)"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </panel>
+</div>

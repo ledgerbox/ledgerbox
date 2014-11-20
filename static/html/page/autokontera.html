@@ -1,0 +1,41 @@
+﻿<div class="container">
+    <div class="row" >
+        <p>This tool will check your accounting by comparing it to your bank transaction file and check if all the bank have been recorded</p>
+        <button class="btn btn-primary" ng-click="doDiff()">Check</button>
+    </div>
+    <div class="row" style="margin-top: 40px;">
+        <div class="col-md-10 col-md-offset-1">
+            <table class="table">
+                <tr>
+                    <th colspan="3">LedgerBox</th>
+                    <th style="background-color:#ddd"></th>
+                    <th colspan="3">Bank file</th>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th style="background-color:#ddd"></th>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                </tr>
+
+                <tr ng-repeat="it in matchList | orderBy:date" ng-class="{ 'danger': !it.acc || !it.bank }" >
+                    <td ng-if="!it.acc" colspan="3" class="text-center">No entry</td>
+                    
+                    <td ng-if="it.acc">{{ it.acc.date }}</td>
+                    <td ng-if="it.acc">{{ it.acc.name }}</td>
+                    <td ng-if="it.acc">{{ it.acc.amount }}</td>
+                    
+                    <th style="background-color:#ddd"></th>
+                    <td ng-if="!it.bank" colspan="3">No entry</td>
+                    
+                    <td ng-if="it.bank">{{ it.bank.Transdag }}</td>
+                    <td ng-if="it.bank">{{ it.bank.Text }}</td>
+                    <td ng-if="it.bank">{{ it.bank.Belopp }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

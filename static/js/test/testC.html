@@ -1,0 +1,127 @@
+﻿<html ng-app="chosenExampleApp">
+<head>
+
+    <link href="/js/lib/chosen-spinner.css" rel="stylesheet">
+    <link href="/js/lib/chosen.min.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+    <script src="/js/lib/chosen.jquery.min.js"></script>
+    <script src="/js/lib/chosen.js"></script>
+    <script>
+        (function () {
+            angular.module('chosenExampleApp', ['localytics.directives']).config([
+            '$parseProvider', function ($parseProvider) {
+                return $parseProvider.unwrapPromises(true);
+            }
+            ]).controller('IndexCtrl', [
+            '$scope', '$q', '$timeout', function ($scope, $q, $timeout) {
+                var simulateAjax;
+                simulateAjax = function (result) {
+                    var deferred, fn;
+                    deferred = $q.defer();
+                    fn = function () {
+                        return deferred.resolve(result);
+                    };
+                    $timeout(fn, 3000);
+                    return deferred.promise;
+                };
+                simulateAjax(['grooo', 'wowowowow', 'lakakalakakl', 'yadayada', 'insight', 'delve', 'synergy']).then(function (result) {
+                    return $scope.optionsFromQuery = result;
+                });
+                $scope.optionsFromQueryAsHash = (function () {
+                    var result;
+                    result = {
+                        win: "Brilliant Escape",
+                        fail: "Untimely Demise"
+                    };
+                    return simulateAjax(result);
+                })();
+                $scope.$watch('emptyCollection', function (empty) {
+                    return $scope.emptyOptions = simulateAjax(empty ? [] : ['look', 'i', 'have', 'data']);
+                });
+                $scope.directiveOptions = {
+                    no_results_text: "SO SORRY"
+                };
+                $scope.myPets = ['cat'];
+                $scope.pets = {
+                    cat: 'Cat',
+                    dog: 'Dog',
+                    hamster: 'Hamster'
+                };
+                $timeout(function () {
+                    return $scope.$apply(function () {
+                        return $scope.myPets.push('hamster');
+                    });
+                }, 1000);
+                return $scope.disabled = true;
+            }
+            ]);
+        }).call(this);
+
+    </script> 
+</head>
+<body ng-controller="IndexCtrl">
+    <h1>Chosen Directive Example Usage</h1>
+    <h2>Chosen with a promise: {{foo | json}}</h2>
+    <select chosen
+            multiple
+            allow-single-deselect="true"
+            data-placeholder="Choose Your Own Adventure"
+            no-results-text="'Tough luck'"
+            ng-model="foo"
+            ng-options="value for value in optionsFromQuery"
+            style="width:200px;">
+        <option value=""></option>
+    </select>
+    <h2>Chosen with a promised hash: {{baz | json}}</h2>
+    <select chosen
+            allow-single-deselect="true"
+            data-placeholder="Choose Your Own Adventure"
+            no-results-text="'Tough luck'"
+            ng-model="baz"
+            ng-options="value for (key,value) in optionsFromQueryAsHash"
+            style="width:200px;">
+        <option value=""></option>
+    </select>
+    <h2>Chosen with static options: {{ bar }}</h2>
+    <select chosen disable-search="true" ng-model="bar">
+        <option>Hi</option>
+        <option>This is fun</option>
+        <option>I like Chosen so much</option>
+        <option>I also like bunny rabbits</option>
+        <option value=""></option>
+    </select>
+    <h2>Passing options in as a hash: {{ woo }}</h2>
+    <select ng-model="woo"
+            chosen="directiveOptions"
+            ng-options="value for value in optionsFromQuery"
+            style="width:200px;">
+        <option value=""></option>
+    </select>
+    <h2>Disabling the element with a message when the collection is empty: {{ whatever }}</h2>
+    <input type="checkbox" ng-model="emptyCollection" /> Empty?
+    <select chosen
+            ng-model="whatever"
+            no-results-text="'Sorry no options for you'"
+            ng-options="value for value in emptyOptions"
+            style="width:200px;">
+        <option value=""></option>
+    </select>
+    <h2>Changing the ngModel externally: {{ myPets }}</h2>
+    <select multiple
+            ng-model="myPets"
+            ng-options="value as label for (value, label) in pets"
+            chosen
+            style="width:200px;"></select>
+    <h2>Disabling the selection:</h2>
+    <label for="disabled">Disabled</label>
+    <input id="disabled" type="checkbox" ng-model="disabled">
+    <br>
+    <select chosen disable-search="true" ng-model="somemodel" ng-disabled="disabled">
+        <option>Great</option>
+        <option>fun</option>
+        <option>Great fun .. indeed</option>
+        <option value=""></option>
+    </select>
+</body>
+</html>

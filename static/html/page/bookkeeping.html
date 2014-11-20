@@ -1,0 +1,112 @@
+<div class="container-fluid">
+
+    <form  class="form-inline ver" ng-submit="save()" name="form">
+
+        <div class="form-group" ng-hide="hideSerie">
+            <label style="display: block">Serie</label>
+            <select style="width: 150px;" ng-model="verification.serie" data-placeholder="Välj serie" ng-disabled="mode.view" chosen allow-single-deselect="true" disable-search="true" ng-options="label(s.namn, s.info) for s in series" >
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label style="display: block" >Bokföringsdatum(*)</label>
+            <datepicker>
+                <input ng-disabled="mode.view" ng-required="true" ng-model="verification.verdatum" class="form-control" type="text"> </input>
+            </datepicker>
+        </div>
+        <div class="form-group">
+            <label>Text(*)</label>
+            <div>
+                <input style="width:350px;" ng-disabled="mode.view" ng-required=" true" class="form-control" type="text" ng-model="verification.vertext" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Filer(*)</label>
+            <div>
+                <a class="btn btn-primary" ng-click="addFile()">
+                    <span class="glyphicon glyphicon-paperclip"></span>
+                </a>
+                <a href="{{f}}" target="_blank" ng-repeat="f in files" >
+                    <i  class="glyphicon glyphicon-file"></i>
+                </a>
+            </div>
+        </div>
+
+        <table class="table table-striped" style="margin-top: 15px;">
+            <tr>
+                <th class="col-md-3">
+                    Konto
+                </th>
+                <th>
+                    Debit
+                </th>
+                <th>
+                    Kredit
+                </th>
+                <th>
+                    Kontosaldo
+                </th>
+                <th>
+                    <span style="margin-left:12px;" class="glyphicon glyphicon-trash"></span>
+                </th>
+
+            </tr>
+            <tr ng-repeat="a in verification.poster" ng-class="{true:'danger'}[a.error]">
+                <td class="col-md-3">
+                    <select chosen allow-single-deselect="true" ng-disabled="mode.view" ng-model="a.kontonr" ng-options="k.kontonr as label(k.kontonr, k.kontonamn) for k in konton" data-placeholder="Välj Konto">
+                        <option value=""></option>
+                    </select>
+                </td>
+                <td class="col-md-2">
+                    <input class="form-control number" ng-disabled="!a.kontonr || mode.view" ng-required="!a.credit && a.kontonr "  format ng-model="a.debit" />
+                </td>
+                <td class="col-md-2">
+                    <input class="form-control number" ng-disabled="!a.kontonr || mode.view"  ng-required="!a.debit && a.kontonr " format ng-model="a.credit" />
+                </td>
+                <td class="col-md-2">
+                    {{a.sum}}
+                </td>
+                <td class="col-md-2">
+                    <a ng-disabled="mode.view" class="btn" href="" ng-click="remove(verification.poster, $index)"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Summa
+                </td>
+                <td>
+                    {{sumDebit | float}}
+                </td>
+                <td>
+                    {{sumCredit | float}}
+                </td>
+                <td />
+            </tr>
+            <tr>
+                <td />
+                <td />
+                <td>
+                    Differens
+                </td>
+                <td>
+                    <div ng-class="{true:'text-success', false:'text-danger'}[sumDebit - sumCredit == 0]">{{sumDebit - sumCredit}}</div>
+                </td>
+                <td />
+            </tr>
+        </table>
+
+        <hr class="blue">
+
+        <div class="grey" style="text-align: center;  ">
+            <a class="btn btn-lg btn-default left"  ng-click="clear()" style="margin:3px;">
+                <span class="glyphicon glyphicon-remove"></span> Avbryt
+            </a>
+
+
+            <button ng-disabled="form.$invalid" class="btn btn-lg btn-success right" type="submit" style="margin:3px;">
+                <span class="glyphicon glyphicon-ok"></span> Spara
+            </button>
+            <div class="clear"></div>
+        </div>
+    </form>
+</div>

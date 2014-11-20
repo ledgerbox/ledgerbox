@@ -1,0 +1,35 @@
+﻿<div class="container-fluid" style="padding-top: 50px; padding-bottom: 40px;  ">
+
+
+    <div class="grey top" style="position: fixed; text-align: center">
+
+        <a class="btn btn-default left" ng-active="show.menu" ng-active="show.menu" ng-click="show.menu = ! show.menu" style="margin:3px;">
+            <span class="fa fa-bars"></span>
+        </a>
+
+        <div class="right" style="height: 48px; width: 120px; margin-top: 2px;text-align: left;">
+            <a class="btn btn-default" href="#/desktop/overview"><i class="fa fa-desktop"></i> Vanlig</a>
+        </div>
+
+        <h4  style="margin-left: 15px">
+            {{title}}
+        </h4>
+
+        <div class="clear"></div>
+    </div>
+     
+
+    <div class="grey mnav" ng-class="{true:'mnav_open', false:'mnav_close'}[show.menu]" style="text-align: left; position: fixed; width: 200px; margin-top: 40px; z-index: 1; top: 0; bottom: 0px;  ">
+        <ul class="nav" id="side-menu">
+            <li ng-repeat="r in rows" style="border-bottom: 1px solid #e7e7e7;">
+                <a href="" ng-click="menuClick(r)">
+                    <i ng-class="r.icon"></i> {{r.text}}
+                </a>
+            </li>
+        </ul>
+    </div>
+     
+    <ng-include src="show.path"></ng-include>
+
+     
+</div>

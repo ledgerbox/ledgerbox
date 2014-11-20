@@ -1,0 +1,73 @@
+﻿<div class="container-fluid" ng-controller="bookCtrl" >
+    <form  class="form-inline ver" ng-submit="save()" name="form">
+        <div ng-show="done">
+            <h2>Ett nytt räkenskapsår är skapat</h2>
+        </div>
+        <div ng-show="edit">
+            <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse navbar-ex1-collapse navbar_width">
+                    <ul class="nav navbar-nav right">
+                        <li>
+                            <form>
+                                <button type="submit" class="btn btn-info navbar-btn" href=""><span class="glyphicon glyphicon-ok-sign"></span> Spara</button>
+                            </form>
+                        </li>
+                        <li>
+                            <form>
+                                <a class="btn btn-default navbar-btn" href="javascript:history.back()"><span class="glyphicon glyphicon-circle-arrow-left"></span>Avbryt</a>
+                            </form>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </nav>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" ng-click="showFilter = ! showFilter">
+                    Räkenskapsår<i style="cursor: pointer;" ng-class="{true : 'fa-angle-double-up ', false : 'fa-angle-double-down'}[showFilter]" class="fa right filter fa-angle-double-up"> </i>
+                </div>
+                <div class="panel-body" ng-show="showFilter">
+
+                    <label>Startdatum</label>
+                    <datepicker>
+                        <input class="form-control" ng-model="date.startDate" type="text" required>
+                    </datepicker>
+                    <label>Slutdatum</label>
+
+                    <datepicker>
+                        <input class="form-control" ng-model="date.endDate" type="text" required>
+                    </datepicker>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" ng-click="showAdvFilter = ! showAdvFilter">
+                    Ingånsvärden<i style="cursor: pointer;" ng-class="{true : 'fa-angle-double-up ', false : 'fa-angle-double-down'}[showAdvFilter]" class="fa right filter fa-angle-double-up"> </i>
+                </div>
+                <div class="panel-body" ng-show="showAdvFilter">
+
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Typ</th>
+                            <th class="col-md-3">Konto</th>
+                            <th>Saldo</th>
+                        </tr>
+                        <tr ng-repeat="b in balances">
+                            <td class="col-md-2">Ingånde balans</td>
+                            <td class="col-md-3"> <select chosen ng-model="b.konto" ng-options="label(k.kontonr, k.kontonamn) for k in konton" data-placeholder="Välj Konto"></select> </td>
+                            <td class="col-md-3"><input class="form-control number" format="" ng-model="b.saldo" format /></td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

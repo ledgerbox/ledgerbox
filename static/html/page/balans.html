@@ -1,0 +1,79 @@
+﻿<div class="container-fluid">
+    <div class="row" >
+        <div class="col-lg-6">
+            <label style="margin-top: 10px;">Startdatum</label>
+            <datepicker>
+                <input ng-change="newDate()" class="form-control" ng-model="search.startDate" type="text">
+            </datepicker>
+        </div>
+        <div class="col-lg-6">
+            <label style="margin-top: 10px;">Slutdatum</label>
+            <datepicker>
+                <input ng-change="newDate()" class="form-control" ng-model="search.endDate"type="text">
+            </datepicker>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 40px;">
+        <div class="col-lg-12">
+            <table class="table">
+                <tr>
+                    <th>Namn</th>
+                    <th>Konto</th>
+                    <th>Ingånde</th>
+                    <th>Perioden</th>
+                    <th>Utgånde</th>
+                </tr>
+
+                <tr class="active">
+                    <td colspan="0">
+                        TILLGÅNGAR
+                    </td>
+                </tr>
+                <tr ng-repeat="a in result.till">
+                    <td style="padding-left: 25px; width: 200px;">{{a.konto}}</td>
+                    <td>{{a.text}}</td>
+                    <td>{{ a.ing | float}}</td>
+                    <td>{{a.period | float}}</td>
+                    <td>{{a.ib + a.ing + a.period | float}}</td>
+                </tr>
+                <tr  >
+                    <td colspan="2" style="padding-left: 25px;">
+                        S:A TILLGÅNGAR
+                    </td>
+                    <td> {{result.tillInTot | float}} </td>
+                    <td> {{result.tillPeriodTot | float}}</td>
+                    <td>{{result.tillInTot + result.tillPeriodTot | float}} </td>
+                </tr>
+                <tr class="active">
+                    <td colspan="0">
+                        EGET KAPITAL, AVSÄTTNINGAR OCH SKULDER
+                    </td>
+                </tr>
+                <tr ng-repeat="a in result.cost">
+                    <td style="padding-left: 25px;  width: 200px;">{{a.konto}}</td>
+                    <td>{{a.text}}</td>
+                    <td>{{ a.ing | float}}</td>
+                    <td>{{a.period | float}}</td>
+                    <td>{{ a.ing + a.period | float}}</td>
+                </tr>
+                <tr  >
+                    <td colspan="2" style="padding-left: 25px;">
+                        S:A EGET KAPITAL, AVSÄTTNINGAR OCH SKULDER
+                    </td>
+                    <td> {{result.costInTot | float}} </td>
+                    <td> {{result.costPeriodTot | float}}</td>
+                    <td>{{result.costInTot + result.costPeriodTot | float}} </td>
+                </tr>
+                <tr class="info">
+                    <td colspan="2">
+                        BERÄKNAT RESULTAT
+                    </td>
+                    <td> {{result.tillInTot - result.costInTot | float}} </td>
+                    <td> {{result.tillPeriodTot - result.costPeriodTot | float}}</td>
+                    <td>{{ result.tillInTot + result.tillPeriodTot - result.costInTot - result.costPeriodTot | float}} </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>

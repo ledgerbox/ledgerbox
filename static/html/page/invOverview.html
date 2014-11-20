@@ -1,0 +1,75 @@
+<div class="container-fluid" datagrid="g" datagrid-page-size="75">
+
+    <a class="btn btn-primary btn-large" href="#/desktop/invoices/new" style="margin-bottom: 15px"><span class="glyphicon glyphicon-plus"></span> Skapa faktura</a>
+
+    <panel title="Sök efter faktura" collapse="true">
+        <div class="form-group">
+                <label> Sök </label>
+                <div class="input-group">
+                    <input class="form-control" type="text" ng-model="g.search.freeText" placeholder="Fritext sökning">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <label for="customer">Kund</label>
+                <input id="customer" class="form-control" type="text" ng-model="g.search.customer" placeholder="Sök efter kund">
+
+            <label for="startDate" style="margin-top: 15px">Startdatum</label>
+
+            <datepicker>
+                <input id="startDate" class="form-control" type="text" ng-model="g.search.startDate">
+            </datepicker>
+
+            <label for="endDate" style="margin-top: 15px">Slutdatum</label>
+
+            <datepicker>
+                <input id="endDate" class="form-control" type="text" ng-model="g.search.endDate">
+            </datepicker>
+
+        </div>
+
+    </panel>
+
+    <panel title="Fakturor">
+        <dropdown title="Visa/Dölj kolumn">
+            <li toggle-col-display="0">Nummer</li>
+            <li toggle-col-display="1">Kund</li>
+            <li toggle-col-display="2">Fakturadatum</li>
+            <li toggle-col-display="3">Exkl. moms</li>
+            <li toggle-col-display="4">Moms</li>
+            <li toggle-col-display="5">Att Betala</li>
+        </dropdown>
+        <paginator></paginator>
+        <div class="table-responsive">
+            <table class="table table-striped {{g.cssShowHide(6)}}">
+                <tr>
+                    <th col-index="0"  col-hide  sort-by="num">Nummer</th>
+                    <th col-index="1" sort-by="customer.name">Kund</th>
+                    <th col-index="2" sort-by="date" default-sort="-">Fakturadatum</th>
+                    <th col-index="3"  col-hide  sort-by="totalExlTax">Exkl. moms</th>
+                    <th col-index="4"  col-hide  sort-by="totalVAT">Moms</th>
+                    <th col-index="5" sort-by="toBePaid">Att Betala</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="inv in invoices | filter: search | orderBy:g.orderByExp | paginate: g.paginator" >
+                    <td col-index="0"><a href="" ng-click="show(i)" > {{i.num}} </a></td>
+                    <td col-index="1"> {{inv.customer.name}} </td>
+                    <td col-index="2"> {{inv.date}}</td>
+                    <td col-index="3"> {{inv.totalExlTax | float}} </td>
+                    <td col-index="4">{{inv.totalVAT | float}}</td>
+                    <td col-index="5">{{inv.toBePaid | float}}</td>
+                    <td>
+                        <a class="btn" href="" ng-click="edit(inv)"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a class="btn" href="" ng-click="remove(inv)"><span class="glyphicon glyphicon-trash"></span></a>
+                        <button type="button" class="btn btn-default" ng-click="generatePdf(inv)">
+                            Generera PDF
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </panel>
+</div>

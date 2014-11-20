@@ -1,0 +1,9 @@
+<ul class="pager">
+    <li class="previous" is-disabled="ns.currentPage == 0" >
+        <a style="cursor: pointer" a-disabled="ns.currentPage == 0" ng-click="ns.currentPage=ns.currentPage-1">&larr; Bakåt</a>
+    </li>
+    {{ns.currentPage+1}}/{{ns.numberOfPages}}
+    <li class="next" is-disabled="ns.currentPage >= ns.numberOfPages-1">
+        <a style="cursor: pointer" a-disabled="ns.currentPage >= ns.numberOfPages"  ng-click="ns.currentPage=ns.currentPage+1">Nästa &rarr;</a>
+    </li>
+</ul>

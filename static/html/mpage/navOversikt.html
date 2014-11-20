@@ -1,0 +1,24 @@
+﻿<div class="grey bottom" style="  position: fixed; ">
+ 
+    <a class="btn btn-default  " is-disabled="!undo" ng-click="undoClick()" style="margin:3px;">
+        <i class="fa fa-undo"></i> Ångra senast
+    </a>
+
+
+    <dropdown title="Visa/Dölj kolum" class="dropdownMobile">
+        <li toggle-col-display="0">Serie</li>
+        <li toggle-col-display="1">Verifikationsnummer</li>
+        <li toggle-col-display="2">Bokföringsdatum</li>
+        <li toggle-col-display="3">Beskrivning</li>
+        <li toggle-col-display="4">Filer</li>
+        <li toggle-col-display="5">Typ</li>
+        <li toggle-col-display="6">Sum</li>
+    </dropdown>
+
+    <a class="btn btn-default  "  ng-click="paginator =! paginator" style="margin:3px;">
+        <i class="fa fa-arrows-h"></i>
+    </a>
+    <paginator ng-show="paginator" style="position: fixed;top:50px;width: 50%;" class="paginatorMobile"></paginator>
+
+
+</div>

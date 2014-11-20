@@ -1,0 +1,126 @@
+﻿<div class="container-fluid">
+    <!-- Button trigger modal -->
+
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Period
+            </th>
+            <th>
+                Visa
+            </th>
+            <th>
+                Betala
+            </th>
+        </tr>
+        <tr ng-repeat="m in momsperiod">
+            <td>{{m.name}} </td>
+            <td> <a class="btn btn-default" ng-click="show(m)" href="">Visa</a></td>
+            <td> <a class="btn btn-default" ng-click="pay(m)" href="">Betala</a></td>
+        </tr>
+    </table>
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog  modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Moms</h4>
+                </div>
+                <div class="modal-body">
+            Moms att deklarera för
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>A. Momspliktig försäljning eller uttag exklusive moms</h3>
+                    <div class="row mb" ng-repeat="m in moms | filter:{typ : 'a'}">
+                        <div  class="col-sm-6 control-label">{{m.text}}</div>
+                        <div class="col-sm-1 moms_nr">
+                            {{m.nr}}
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control"  ng-model="m.belopp" value="{{all | kontonrSum: m.start : m.end }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h3>B. Utgående moms på försäljning eller uttag i ruta 05 - 0</h3>
+                    <div class="row mb" ng-repeat="m in moms | filter:{typ : 'b'}">
+                        <div  class="col-sm-6 control-label">{{m.text}}</div>
+                        <div class="col-sm-1 moms_nr">
+                        {{m.nr}}
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control"  ng-model="m.belopp">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>C. Momspliktiga inköp vid omvänd skattskyldigh</h3>
+                    <div class="row mb" ng-repeat="m in moms | filter:{typ : 'c'}">
+                        <div  class="col-sm-6 control-label">{{m.text}}</div>
+                        <div class="col-sm-1 moms_nr">
+                            {{m.nr}}
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control"  ng-model="m.belopp">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h3>D. Utgående moms på inköp i ruta 20 - 2</h3>
+                    <div class="row mb" ng-repeat="m in moms | filter:{typ : 'd'}">
+                        <div  class="col-sm-6 control-label">{{m.text}}</div>
+                        <div class="col-sm-1 moms_nr">
+                            {{m.nr}}
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control"  ng-model="m.belopp">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>E. Försäljning m.m. som är undantagen från moms</h3>
+                    <div class="row mb" ng-repeat="m in moms | filter:{typ : 'e'}">
+                        <div  class="col-sm-6 control-label">{{m.text}}</div>
+                        <div class="col-sm-1 moms_nr">
+                            {{m.nr}}
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control"  ng-model="m.belopp">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h3>F. Ingående moms</h3>
+                    <div class="row mb" ng-repeat="m in moms | filter:{typ : 'f'}">
+                        <div class="col-sm-6 control-label">{{m.text}}</div>
+                        <div class="col-sm-1 moms_nr">
+                            {{m.nr}}
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control"  ng-model="m.belopp">
+                        </div>
+                    </div>
+                    <h3>G. Moms att betala eller få tillbaka (ifylls allt</h3>
+                    <div class="row mb" ng-repeat="m in moms | filter:{typ : 'g'}">
+                        <div  class="col-sm-6 control-label">{{m.text}}</div>
+                        <div class="col-sm-1 moms_nr">
+                            {{m.nr}}
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control"  ng-model="m.belopp">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+</div>

@@ -1,0 +1,67 @@
+﻿
+.dropdownMobile {
+  ul{
+    position: fixed;
+    top: 40px;
+    left: 40%;
+  }
+}
+.paginatorMobile {
+  .pager{
+    margin: 0;
+    overflow: auto;
+  }
+}
+// Wrappers
+
+#wrapper {
+    width: 100%;
+}
+
+#page-wrapper {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+} 
+
+.top {
+  background-color: @darkblue;
+  color: @lightgray;
+  border-bottom: 1px solid @lightgray;
+}
+
+
+
+.mnav li {
+    font-size: 24px;
+    letter-spacing: 1.1px;
+    border-bottom: 1px solid @lightgray;
+    background-color: @darkblue;
+    color: @lightgray;
+    a{
+      color: @lightgray;
+      &:hover{
+        background-color: @lightblue;
+      }
+      &:active{
+        background-color: @lightblue;
+      }
+    }
+}
+
+.top {
+     width: 100%; 
+     height: 40px; 
+     z-index: 1; 
+     top: 0; 
+     left: 0; 
+}
+.bottom {
+    width: 100%;
+    height: 51px; z-index: 1;
+    bottom: 0; left: 0;
+    border-top: 1px solid #e7e7e7;
+
+    background-color: @darkblue;
+    color: @lightgray;
+}

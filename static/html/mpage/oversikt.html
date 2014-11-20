@@ -1,0 +1,33 @@
+﻿<div datagrid="g" datagrid-page-size="75">
+    <ng-include src="'/html/mpage/navOversikt.html'"></ng-include>
+
+
+    <div class="table-responsive">
+        <table class="table table-striped {{g.cssShowHide(6)}}">
+            <tr>
+                <th col-index="0" col-hide sort-by="ver.serie">Serie</th>
+                <th col-index="1" sort-by="vernr" default-sort="-">Verifikationsnummer</th>
+                <th col-index="2" col-hide sort-by="date">Bokföringsdatum</th>
+                <th col-index="3" > Beskrivning</th>
+                <th col-index="4" col-hide >Filer</th>
+                <th col-index="5" col-hide>Typ</th>
+                <th col-index="6" sort-by="sum">Sum</th>
+                <th>Makulera</th>
+            </tr>
+            <tr ng-repeat="v in verfikationer | filter: search | orderBy:g.orderByExp | paginate: g.paginator" >
+                <td col-index="0" class="col-hide-0"> {{v.ver.serie}} </td>
+                <td col-index="1"> {{v.vernr}} </td>
+                <td col-index="2"> {{v.dateString}}</td>
+                <td col-index="3"><a href="" ng-click="show(v.ver)" > {{v.text }}</a> </td>
+                <td col-index="4"> <a  ng-repeat="f in  v.files" href="{{f}}"><i class="glyphicon glyphicon-paperclip"></i></a> </td>
+                <td col-index="5"> {{v.typ}} </td>
+                <td col-index="6"> {{v.sumFixed}} </td>
+                <td>
+                    <a class="btn" href="" ng-click="revert(v.ver)"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>

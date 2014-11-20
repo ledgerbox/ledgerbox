@@ -1,0 +1,98 @@
+﻿<div>
+    <form ng-submit="save()">
+        <ng-include src="'/html/mpage/nav.html'"></ng-include>
+
+        <div class="form-group">
+            <label>Datum</label>
+            <input class="form-control" ng-model="p.date" type="date" ng-required="true">
+        </div>
+        <div class="form-group">
+            <label>Inbetalning till</label> <br />
+            <label class="checkbox-inline" ng-repeat="k in inkassakonton">
+                <input type="radio" name="inlineRadioOptions" value="{{k.konto}}" ng-model="p.konto" ng-required="true"> {{k.text}}
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>Typ av inbetalning</label>
+            <select ng-model="p.typ" class="form-control" ng-options="t.kontotext for t in intyp" ng-required="true">
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Text:</label>
+            <input type="text" class="form-control" ng-model="p.text" ng-required="true">
+        </div>
+
+        <div class="form-group" ng-show="p.files.length">
+            <label>Filer:</label>
+            <div class="file">
+                <a href="{{f}}" target="_blank" ng-repeat="f in p.files" >
+                    <i  class="glyphicon glyphicon-file"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="form-group" ng-show="p.typ.kontotext =='Försäljning'">
+            <table class="table">
+                <tr>
+                    <td><b>Moms</b></td>
+                    <td><b>Belopp exkl moms</b></td>
+                    <td><b>Moms i kr</b></td>
+                    <td><b>Totalt</b></td>
+                </tr>
+                <tr ng-repeat="m in p.moms" ng-show="m.checked">
+                    <td>{{m.typ}}%</td>
+                    <td>
+                        <input type="number" class="form-control" ng-model="m.belopp" ng-required="p.typ.kontotext =='Försäljning' && m.checked">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" ng-model="m.moms" ng-required="p.typ.kontotext =='Försäljning' && m.checked">
+                    </td>
+                    <td>
+                        <input type="number" class=" form-control" value="{{m.belopp + m.moms}}" readonly>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div ng-show="p.typ.kontotext =='Ränteinkomst'">
+            <div class="form-group">
+                <label>Belopp</label>
+                <input type="number" class="form-control" value="" ng-model="p.belopp" ng-change="updatePskatt()"
+                       ng-required="p.typ.kontotext =='Ränteinkomst'">
+            </div>
+            <div class="form-group">
+                <label>Preliminärskatt</label>
+                <input type="number" class="form-control" value="{{p.belopp * 30/100}}" ng-model="p.skatt"
+                       ng-required="p.typ.kontotext =='Ränteinkomst'">
+            </div>
+            <div class="form-group">
+                <label>Belopp (efter skatt)</label>
+                <input type="number" class="form-control" value="{{p.belopp * 1 - p.skatt * 1}}">
+            </div>
+        </div>
+
+        <div ng-show="p.typ.kontotext =='Övriga inkomster'">
+            <table class="table">
+                <tr>
+                    <td><b>Moms</b></td>
+                    <td><b>Belopp exkl moms</b></td>
+                    <td><b>Moms i kr</b></td>
+                    <td><b>Totalt</b></td>
+                </tr>
+                <tr ng-repeat="m in p.moms">
+                    <td>{{m.typ}}%</td>
+                    <td>
+                        <input type="number" class="form-control" ng-model="m.belopp" ng-required="p.typ.kontotext =='Försäljning' && m.checked">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" ng-model="m.moms" ng-required="p.typ.kontotext =='Försäljning' && m.checked">
+                    </td>
+                    <td>
+                        <input type="number" class=" form-control" value="{{m.belopp + m.moms}}" readonly>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>

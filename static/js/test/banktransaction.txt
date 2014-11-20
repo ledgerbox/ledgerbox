@@ -1,0 +1,7 @@
+* Transaktionsrapport Period 2014-01-01 - 2014-09-26 Skapad 2014-09-26 14:40
+Radnr	Clnr	Kontonr	Produkt	Valuta	Bokfdag	Transdag	Valutadag	Referens	Text	Belopp	Saldo
+1	81059	9242183060	Företagskonto	SEK	2014-01-02	2014-01-02	2014-01-03	         7149651	Bankgiro inbetalning	55000,00	159592,62
+2	81059	9242183060	Företagskonto	SEK	2014-01-13	2014-01-13	2014-01-13	Moms k4	Bg-bet. via internet	-63545,00	96047,62
+3	81059	9242183060	Företagskonto	SEK	2014-01-14	2014-01-14	2014-01-14	com hem jan	Bg-bet. via internet	-304,00	95743,62
+4	81059	9242183060	Företagskonto	SEK	2014-01-16	2014-01-16	2014-01-16	350 TEKNIKMAGASI	Kortköp/uttag	-39,90	95703,72
+5	81059	9242183060	Företagskonto	SEK	2014-01-20	2014-01-20	2014-01-20		Enligt avisering swedbank/sparbank	-900,00	94803,72

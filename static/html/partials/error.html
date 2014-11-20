@@ -1,0 +1,8 @@
+﻿<div class="errors" ng-repeat="e in errors">
+    <div ng-class="e.status" class="alert alert-dismissible" role="alert">
+        <button type=" button" class="close" ng-click="cleanError()">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <strong>{{e.titel}}</strong> {{e.msg}}
+    </div>
+</div>

@@ -1,0 +1,186 @@
+﻿<div class="ribbon">
+    <a href="#">BETA</a>
+</div>
+<div ng-controller="introCtrl">
+
+    <div class="intro-header">
+
+        <div class="visible-xs" style="text-align: center;">
+            <img src="/img/logo64x64.png" class="logoPhone">
+            <div class="title" style="font-size: 40px; color: #445A65; ">LEDGERBOX</div>
+        </div>
+        <!-- Modal -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <div class="hidden-xs" style="width: 970px; margin: 0 auto;">
+                            <div class="logo" style="float:left;"></div>
+                            <div class="title" style="float:left; margin-left: 20px;margin-top: 35px ;font-size: 100px; color: #445A65; font-weight: 700;">LEDGERBOX</div>
+                            <div class="subtitle" style="float:right;font-size: 38px; margin-left: 20px;  color: #88A5AD; font-weight: 400;">- Ett enklare bokföringsystem</div>
+
+                            <div class="clear"></div>
+                            <hr>
+                        </div>
+
+                        <ul class="list-inline intro-social-buttons" style="margin-left: 0px;">
+                            <li>
+                                <a ng-click="demo()" class="btn btn-info btn-lg"><i class="fa fa-user fa-fw"></i>
+                                    <span class="network-name">Prova</span></a>
+                            </li>
+                            <li>
+                                <a ng-click="login()" class="btn btn-info btn-lg">
+                                <i class="fa fa-plus fa-fw"></i> <span class="network-name">Skapa konto</span></a>
+                            </li>
+                            <li>
+                                <a ng-click="login()" class="btn btn-info btn-lg"><i class="fa fa-sign-in fa-fw"></i>
+                                    <span class="network-name">Logga in</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Följ vårat nyhetsbrev</h1>
+                    <div id="mc_embed_signup">
+                        <form class="form-inline" role="form" action="//ledgerbox.us9.list-manage.com/subscribe/post?u=48538e839abbc8a632a711d13&amp;id=c4c44934e4" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                            <div class="form-group">
+                                <label class="sr-only">E-post</label>
+                                <input type="email" value="" name="EMAIL" class="brev form-control" id="exampleInputEmail2" placeholder="Din e-post">
+                            </div>
+                            <button type="submit" class="btn btn-info">Skicka</button>
+                            <div id="mce-responses" class="clear" >
+                                <span class="response" id="mce-error-response" style="display:none"></span>
+                                <span class="response" id="mce-success-response" style="display:none"></span>
+                            </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+
+                            <div style="position: absolute; left: -5000px;"><input type="text" name="b_48538e839abbc8a632a711d13_c4c44934e4" tabindex="-1" value=""></div>
+                        </form>
+                        <i class="arrow fa fa-angle-down"></i>
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.intro-header -->
+    <!-- Page Content -->
+    <div class="content-section-a" style="border-top: 1px solid #e7e7e7;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-11 col-sm-10">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Välkommen till ett helt nytt sätt att bokföra!</h2>
+
+                    <p class="lead">Med Ledgerbox kan du sköta din bokföring när och var du vill, med både mobil och dator. All din bokföring sparas automatisk och finns alltid tillgängligt oavsett var du befinner dig. Ledgerbox är online baserat och du kan testa det redan idag. <br> Anmäl dig gärna till vårt nyhetsbrev, eller
+                        <a href="" ng-click="demo()">prova på</a> för att se hur Ledgerbox kan göra ditt bokföringsarbetet mycket lättare.</p>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.content-section-a -->
+    <div class="content-section-b">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Bokför med din mobil</h2>
+
+                    <p class="lead">Med Ledgerbox kan du snabbt och enkelt bokföra direkt med din mobil. Du behöver bara ta kort av dina kvitton, välja verifikationskategori och fylla i beloppet. Appen löser allt det där med debet och kredit åt dig.</p>
+                </div>
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <img class="img-responsive visible-xs" src="/img/phonesSmall.png" alt="">
+                    <img class="img-responsive hidden-xs" src="/img/phonesBig.png" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.content-section-b -->
+    <div class="content-section-a">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Full kontroll med din dator</h2>
+
+                    <p class="lead">Eftersom Ledgerbox är online baserad kommer du åt dina bokföring överallt. Med din dator kan du snabbt söka och skapa nya verifikationer samt skapa balans- och resultatrapporter. Med standard BAS konton  har du alltid full kontroll över din bokföring.</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive visible-xs" src="/img/monitorSmall.png" alt="Bookkeeping small img">
+                    <img class="img-responsive hidden-xs" src="/img/monitorBig.png" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.content-section-a -->
+<div class="content-section-b">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h2 class="section-heading">Ledgerbox fungerar i alla mobiler</h2>
+
+                <p class="lead">Nu behöver du inte betala för dyra och krångliga bokförings- och faktureringsprogram. Du har allt du behöver för att bokföra och fakturera med Ledgerbox redan idag. Skapa dina fakturor direkt i Ledgerbox med din mobil. Du kan även spara dina fakturor direkt i din Dropbox och ha tillgång till din kunddata överallt.</p>
+            </div>
+            <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                <img class="img-responsive visible-xs" src="/img/ipadSmall.png" alt="">
+                <img class="img-responsive hidden-xs" src="/img/ipadBig.png" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+    <div class="content-section-a">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <h2 class="section-heading">Ledgerbox Teamet</h2>
+
+
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="mailto:lars@ledgerbox.se?" target="_top" class="btn btn-info btn-lg"><i
+                                    class="fa fa-envelope fa-fw"></i> <span class="network-name">MAIL</span></a>
+                        </li>
+                        <li>
+                            <a href="https://facebook.com/ledgerboxse" target="_blank"
+                               class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span
+                                    class="network-name">Facebook</span></a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/company/ledgerbox" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span
+                                    class="network-name">Linkedin</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.banner -->
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <p class="copyright text-muted small">Copyright &copy; Cronit 2014. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+     <!--End mc_embed_signup-->
+
+</div>

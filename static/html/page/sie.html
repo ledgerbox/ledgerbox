@@ -1,0 +1,60 @@
+﻿<div class="container-fluid">
+
+
+    <table class="table table-strip">
+        <tr>
+            <th>Start</th>
+            <th>Slut</th>
+            <th>Antal verfikationer</th>
+            <th>Aktivera</th>
+            <th>SIE</th>
+            <th>Ta bort</th>
+        </tr>
+        <tr ng-repeat="b in rows" ng-show="b.show">
+            <td>{{b.start}}</td>
+            <td>{{b.slut}}</td>
+            <td>{{b.ver}}</td>
+            <td>
+                <a ng-hide="b.aktiv" class="btn btn-default" ng-click="active(b)">Aktivera</a>
+                <a class="btn btn-primary disabled" ng-show="b.aktiv">Aktiv</a>
+            </td>
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        SIE <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="" ng-click="viewSIE(b)">Visa</a></li>
+                        <li><a href="" ng-click="downloadSIE(b)">Ladda ner</a></li>
+                    </ul>
+                </div>
+
+            </td>
+            <td><a class="btn btn-default" ng-click="remove(b)">Ta bort</a></td>
+        </tr>
+    </table>
+    <hr/>
+    <div class="grey">
+        <a class="btn btn-info" href="#desktop/book">Skapa nytt räkenskapasår</a>
+
+        <div class="btn btn-info btn-file">
+            Skapa nytt från sie fil
+            <input type="file" fileread read="done(arg)" />
+        </div>
+    </div>
+    <div class="modal fade" id="sieModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title" id="myModalLabel">SIE</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-body">
+                        <pre ng-bind="sieText"></pre>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="panel panel-{{style || 'default'}}">
+    <div class="panel-heading" ng-click="collapse = !collapse">
+        <h4 class=panel-title" style="display: inline"> {{ title }} </h4>
+        <i class="fa right filter" 
+            ng-class="{false : 'fa-angle-double-up ', true : 'fa-angle-double-down'}[!!collapse]" 
+            style="cursor: pointer;"> </i>
+        <div class="clear"></div>
+    </div>
+    <div class="panel-body" ng-hide="collapse" ng-transclude></div>
+</div>

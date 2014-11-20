@@ -1,0 +1,144 @@
+﻿﻿<div class="container-fluid" style="padding-bottom: 100px">
+    <div class="navbar navbar-default navbar-fixed-bottom clear">
+        <a style="margin-left: 15px" class="btn btn-default navbar-btn left" href="javascript:history.back()"><span class="glyphicon glyphicon-circle-arrow-left"></span> Avbryt</a>
+
+        <a style="margin-right: 15px" class="btn btn-success  navbar-btn right" href="" ng-click="save()" ><span class="glyphicon glyphicon-ok-sign"></span> Spara</a>
+
+        </div>
+    <form class="form-horizontal" role="form">
+
+        <panel title="Allmänt" collapse="false">
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Företags namn</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" placeholder=" företags namn" ng-model="info.fname">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Organisations nummer</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" placeholder="Organisations nummer" ng-model="info.orgnr">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Adress</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" placeholder="Adress" ng-model="info.adress">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Post address</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" placeholder="Tele" ng-model="info.postadr">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Ort</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" placeholder="Ort" ng-model="info.ort">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Epost</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" placeholder="Epost" ng-model="info.epost">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Bank namn</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" placeholder="Bank namn" ng-model="info.pt">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Bank konto</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" placeholder="Bank konto" ng-model="info.acc">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Tel</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" placeholder="Telefonummer" ng-model="info.phone">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Hemsida</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" placeholder="www" ng-model="info.web">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Moms</label>
+                    <label class="checkbox-inline"  ng-repeat="m in moms">
+                        <input type="checkbox"  ng-model="m.checked" ng-change="changeMoms()"> {{m.typ}}%
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Momsperiod</label>
+                    <label class="radio-inline">
+                        <input type="radio" ng-model="momsperiod" value="1">  Månad
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" ng-model="momsperiod" value="3"> Kvartal
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio"  ng-model="momsperiod" value="12"> År
+                    </label>
+                </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Faktura logo</label>
+                <dropbox-image src="logo.src" title="title" ></dropbox-image>
+
+                </div>
+            </panel>
+
+        <panel title="Konton" collapse="true">
+            <a class="btn btn-primary" style="margin-bottom: 10px;" ng-click="show.addKonto =! show.addKonto">Lägg till konto</a>
+
+            <table class="table table-striped">
+                <tr>
+                    <th>Namn</th>
+                    <th>Kontonr</th>
+                    <th>Ta bort</th>
+                </tr>
+                <tr ng-show="show.addKonto" class="has-success bg-info">
+                    <td><input class="form-control" ng-model="kontonamn" placeholder="namn"></td>
+                    <td><input class="form-control" ng-model="kontonr" placeholder="nr"></td>
+                    <td><a class="btn btn-default"  ng-click="addKonto()">Skapa</a></td>
+                </tr>
+                <tr ng-repeat="k in konton">
+                    <td><input class="form-control" ng-model="k.kontonamn"  type="text"></td>
+                    <td><input class="form-control" ng-model="k.kontonr" type="text"> </td>
+                    <td><a class="btn btn-default" ng-click="deleteKonto($index)">Ta bort </a></td>
+                </tr>
+               </table>
+            </panel>
+
+
+        <panel title="Serier" collapse="true">
+                <a class="btn btn-primary" style="margin-bottom: 10px;" ng-click="show.addSerie =! show.addSerie">Lägg till serie</a>
+
+                <table class="table table-striped">
+                    <tr>
+                        <th>Namn</th>
+                        <th>Info</th>
+                        <th>Ta bort</th>
+                    </tr>
+                    <tr ng-show="show.addSerie" class="has-success bg-info">
+                        <td><input class="form-control" ng-model="serieName" placeholder="Namn"></td>
+                        <td><input class="form-control" ng-model="serieInfo" placeholder="Info"></td>
+                        <td><a class="btn btn-default"  ng-click="addSerie()">Skapa</a></td>
+                    </tr>
+                    <tr ng-repeat="s in series">
+                        <td><input class="form-control" type="text" ng-model="s.namn"></td>
+                        <td><input class="form-control" ng-model="s.info" type="text"></td>
+                        <td><a class="btn btn-default" ng-click="deleteSerie($index)">Ta bort </a></td>
+                    </tr>
+                </table>
+            </panel>
+        </form>
+      </div>
+    </form>
+</div>

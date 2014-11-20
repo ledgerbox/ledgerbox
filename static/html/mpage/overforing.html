@@ -1,0 +1,29 @@
+﻿<div>
+    <form ng-submit="save()">
+        <ng-include src="'/html/mpage/nav.html'"></ng-include>
+
+        <div class="form-group">
+            <label>Datum</label>
+            <input class="form-control" ng-model="p.date" type="date"  ng-required="true">
+        </div>
+
+        <div class="form-group">
+            <label>Från konto</label>
+            <select class="form-control" ng-model="p.fran" ng-options="k.text for k in utkassakonton"  ng-required="true"></select>
+        </div>
+
+        <div class="form-group">
+            <label>Till konto</label>
+            <select class="form-control" ng-model="p.till" ng-options="k.text for k in utkassakonton"  ng-required="true"></select>
+
+        </div>
+        <div class="form-group">
+            <label>Text</label>
+            <input type="text" class="form-control" ng-model="p.text" ng-required="true">
+        </div>
+        <div class="form-group">
+            <label>Belopp</label>
+            <input type="number" class="form-control"  ng-model="p.belopp" ng-required="true">
+        </div>
+    </form>
+</div>
