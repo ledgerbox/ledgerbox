@@ -20,11 +20,7 @@ app.controller('overviewCtrl', function ($scope, $filter, $http, $user, $util, $
             $util.started = true;
             $user.getDBmail().then(function(dbMail) {
                 $scope.dbMail = dbMail;
-                $http.get("/api/haveuser?email=" +dbMail).then(function(){
-                    //hide
-                }, function(){
-                    $('#myModal').modal('show');
-                })
+  
             });
 
         }

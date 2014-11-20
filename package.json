@@ -6,7 +6,8 @@
     "lessc": "lessc static/css/style.less static/css/style.css",
     "start": "nodemon  server.js"
   },
-  "dependencies": {
+  "dependencies": { 
+    "restify": "2.8.3", 
     "grunt": "~0.4.5",
     "grunt-contrib-less" : "0.11.1",
     "grunt-contrib-watch" : "*",

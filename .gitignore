@@ -1,0 +1,4 @@
+node_modules 
+bower_components
+static/js/lib/debug
+static/build/*
